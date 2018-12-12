@@ -4,9 +4,16 @@
     $info = DBRead('produtos, comerciantes',
                    "where produtos.cecomerciante = comerciantes.cpcomerciante and
                            cpproduto = $_POST[cpproduto]");
+    $info5 = DBRead('promocoes', "where promocoes.ceproduto = $_POST[cpproduto]");
     /*$info = DBRead("promocoes", "where ceproduto = '$_POST[cpproduto]'");*/
     if(is_array($info)){
-        foreach ($info as $inf){ ?>
+        foreach ($info as $inf){
+            if(is_array($info5)){
+                foreach ($info5 as $inf5){
+                    $preçoProduto = floatval(str_replace("," , "." , str_replace("." , "" , $inf['precoProdu'])));
+                    $desconto = $preçoProduto - ($preçoProduto * ($inf5['descontoPromo']/100));
+                }
+            }?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -245,16 +252,16 @@
                         </div>
                         <div class="preview-pic tab-content" style="margin-top: 10px">
                             <div class="tab-pane active" id="pic-1"><div id="content"><div id="map_content"></div></div></div>
-                            <form action="" method="post" id="form_route">
-                                <label style="margin-right: 5px"><h4>Origem:</h4></label><input style="height: 100%;" type="text" id="route_from"/><br/>
-                                <input type="submit" value="Determinar Rota"/><br/>
-                            </form>
                         </div>
                     </div>
                     <div class="details col-md-6">
                         <h3 class="product-title"><?php echo $inf['nomeProdu']; ?></h3>
                         <p class="product-description"><?php echo $inf['descricaoProdu']; ?></p>
-                        <h4 class="price">Valor do Produto: <span><?php echo "R$".$inf['precoProdu']; ?></span></h4>
+                        <?php if(is_array($info5)){ ?>
+                            <h4 class="price">Valor do Produto: <span><?php echo "R$".$desconto; ?></span></h4>
+                        <?php } else {?>
+                            <h4 class="price">Valor do Produto: <span><?php echo "R$".$inf['precoProdu']; ?></span></h4>
+                        <?php }?>
                         <div class="action">
                             <a href="listaProdutos.php"><button class="add-to-cart btn btn-default btnn" type="button" style="float: right;">Voltar</button></a>
                         </div>
@@ -267,7 +274,7 @@
     <script type="text/javascript">
         var map;
         var directionsService = new google.maps.DirectionsService();
-        var info = new google.maps.InfoWindow({maxWidth: 100});
+        var info = new google.maps.InfoWindow({maxWidth: 240});
 
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng('<?php echo "$geo[lati]"; ?>', '<?php echo "$geo[long]"; ?>')

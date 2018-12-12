@@ -2,7 +2,7 @@
     session_start();
     require '../../CONT/connection.php';
     require '../../CONT/database.php';
-    $info = DBRead("produtos","where cecomerciante = '@$_COOKIE[codComer]'");
+    $info = DBRead("produtos","where cecomerciante = '$_COOKIE[codComer]'");
 ?>
 <!doctype html>
 <html lang="pt-br">

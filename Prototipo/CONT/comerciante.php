@@ -6,7 +6,6 @@
     switch(@$_POST['rota']){
         //Primeiro Cadastro Comerciante
         case 1:
-            session_start();
             $info = DBRead('comerciantes', "where emailComer='{$_POST[login]}'", 'emailComer');
             foreach ($info as $inf){
                 if($_POST['login'] == $inf['emailComer']){
@@ -70,6 +69,42 @@
             }else{
                 $_SESSION['msg'] = "Falha ao Efetuar Cadastro";
                 header("Location: ../VIEW/comerciante/cadComerciante.php");
+            }
+        break;
+        case 4:
+            $info = DBRead('comerciantes', "where emailComer='$_POST[login]'");
+            if(is_array($info)) {
+                foreach ($info as $inf){
+                    $cod = 1011;
+                    $_SESSION['msg'] = "Codigo Enviado para seu Email";
+                    $_SESSION['cod'] = $cod;
+                    $_SESSION['NcodComer'] = $inf['cpcomerciante'];
+                    header("Location: ../altSenhaComerS.php");
+                }
+            } else {
+                $_SESSION['msg'] = "Email não cadastrado";
+                header("Location: ../altSenhaComer.php");
+            }
+        break;
+        case 5:
+            //Alterar Senha Comerciante
+            $info = DBRead('comerciantes', "where cpcomerciante='$_POST[codComer]'");
+            if(is_array($info)){
+                if($_POST['senha'] == $_POST['senhas'] && $_POST['cod'] == $_POST['codi']){
+                    foreach ($info as $inf){
+                        $comerciante = array(
+                            'senhaComer'  =>  $_POST['senha']
+                        );
+                        $update = DBupdate('comerciantes', $comerciante, "cpcomerciante = '$inf[cpcomerciante]'");
+                        if($update){
+                            $_SESSION['msg'] = "Alteração Efetuada";
+                            header("Location: ../login.php");
+                        }
+                    }
+                } else { $_SESSION['msg'] = "Senha e / ou Codigo incorreto"; header("Location: ../login.php"); }
+            } else {
+                $_SESSION['msg'] = "Erro, tente novamente mais tarde!";
+                header("Location: ../login.php");
             }
         break;
     }

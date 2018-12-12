@@ -13,12 +13,12 @@
         case 1:
             if(strlen($_POST['img']) > 0){
                 $produto = array(
-                    'nomeProdu'         =>  @$_POST['nome'],
-                    'descricaoProdu'    =>  @$_POST['descricao'],
-                    'precoProdu'        =>  @$_POST['preco'],
-                    'cecategoria'       =>  @$_POST['categoria'],
-                    'cecomerciante'     =>  $_COOKIE['codComer'],
-                    'imgProdu'          =>  $_POST['img']
+                    'nomeProdu'         =>  $_POST['nome'],
+                    'descricaoProdu'    =>  $_POST['descricao'],
+                    'precoProdu'        =>  $_POST['preco'],
+                    'cecategoria'       =>  $_POST['categoria'],
+                    'imgProdu'          =>  $_POST['img'],
+                    'cecomerciante'     =>  $_COOKIE['codComer']
                 );
             } else {
                 $produto = array(
@@ -65,10 +65,10 @@
         case 4:
             if(strlen($_POST['img']) > 0){
                 $produto = array(
-                    'nomeProdu'         =>  @$_POST['nome'],
-                    'descricaoProdu'    =>  @$_POST['descricao'],
-                    'precoProdu'        =>  @$_POST['preco'],
-                    'cecategoria'       =>  @$_POST['categoria'],
+                    'nomeProdu'         =>  $_POST['nome'],
+                    'descricaoProdu'    =>  $_POST['descricao'],
+                    'precoProdu'        =>  $_POST['preco'],
+                    'cecategoria'       =>  $_POST['categoria'],
                     'imgProdu'          =>  $_POST['img']
                 );
             } else {

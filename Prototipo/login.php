@@ -72,7 +72,8 @@
                                       <input id="senha" type="password" name="senha" placeholder="Senha" class="form-control" required>
                                   </div>
                                   <input type="hidden" name="rota" value="2">
-                                  <button type="submit" class="btn btn-default btn-lg">Entrar</button><br/>.
+                                  <button type="submit" class="btn btn-default btn-lg">Entrar</button>
+                                  <a style="float: right" href="altSenhaComer.php">Esqueci minha senha</a><br/><br/>
                               </form>
                               <a class="pull-right btn btn-block btn-success btnn" data-toggle="tab" href="#cadCom">Cadastrar-se</a><br/>.
                           </div>
@@ -88,7 +89,8 @@
                                       <input id="pwd" type="password" name="senha" placeholder="Senha" class="form-control" required>
                                   </div>
                                   <input type="hidden" name="rota" value="2">
-                                  <button type="submit" class="btn btn-default btn-lg">Entrar</button><br/>.
+                                  <button type="submit" class="btn btn-default btn-lg">Entrar</button>
+                                  <a style="float: right" href="altSenhaConsu.php">Esqueci minha senha</a><br/><br/>
                               </form>
                               <a class="pull-right btn btn-block btn-success btnn" data-toggle="tab" href="#cadCon">Cadastrar-se</a><br/>.
                           </div>
@@ -109,9 +111,9 @@
                                   </div>
                                   <div class="form-group">
                                       <input class="check" type="checkbox" name="termos" required>
-                                      <label style="color: #fff;"><a class="check"> Termos e Condições</a></label><br/>
+                                      <label style="color: #fff;"><a class="check" href="VIEW/USET/term.php" target="_blank"> Termos e Condições</a></label><br/>
                                       <input class="check" type="checkbox" name="termos" required>
-                                      <label style="color: #fff;"><a class="check"> Política de Privacidade</a></label>
+                                      <label style="color: #fff;"><a class="check" href="VIEW/USET/priv.php" target="_blank"> Política de Privacidade</a></label>
                                   </div>
                                   <input type="hidden" name="rota" value="1">
                                   <button type="submit" class="pull-right btn btn-block btn-success btnn" style="width: 100%">Criar Conta</button><br/>.
@@ -134,9 +136,9 @@
                                   </div>
                                   <div class="form-group">
                                       <input type="checkbox" name="termos" required>
-                                      <label style="color: #fff;"><a class="check"> Termos e Condições</a></label><br/>
+                                      <label style="color: #fff;"><a class="check" href="VIEW/USET/term.php" target="_blank"> Termos e Condições</a></label><br/>
                                       <input type="checkbox" name="termos" required>
-                                      <label style="color: #fff;"><a class="check"> Política de Privacidade</a></label>
+                                      <label style="color: #fff;"><a class="check" href="VIEW/USET/priv.php" target="_blank"> Política de Privacidade</a></label>
                                   </div>
                                   <input type="hidden" name="rota" value="1">
                                   <button type="submit" class="pull-right btn btn-block btn-success btnn">Criar Conta</button><br/>.

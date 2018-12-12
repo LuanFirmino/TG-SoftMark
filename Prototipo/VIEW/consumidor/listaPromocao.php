@@ -105,7 +105,8 @@
                                 </div>
                                 <div class="caption" style=" height: 170px;">
                                     <h4><?php echo $inf1['nomeProdu'];?></h4>
-                                    <?php $desconto = $inf1['precoProdu'] - ($inf1['precoProdu'] * ($inf1['descontoPromo']/100));?>
+                                    <?php   $preçoProduto = floatval(str_replace("," , "." , str_replace("." , "" , $inf1['precoProdu'])));
+                                            $desconto = $preçoProduto - ($preçoProduto * ($inf1['descontoPromo']/100));?>
                                     <p><?php echo "Por: R$ <strike>".$inf1['precoProdu']."</strike> ".$desconto." com ".$inf1['descontoPromo']."% de desconto!";?></p>
                                     <div style="float: bottom; background-color: black; text-align: center">
                                         <form action="./exibProduto.php" method="post" class="form-register" onsubmit="return">

@@ -139,7 +139,7 @@
                             <li class="col-sm-3" style="padding-top: 15px;">
                                 <div class="fff">
                                     <div class="thumbnail" style="max-height: 240px; height: 240px; display:inline-block;">
-                                        <a type="submit"><img src="<?php if(isset($inf1['imgProdu'])){ echo "../../IMG/$inf1[imgProdu]"; } else { echo "../../IMG/índice.png"; } ?>" align="center" style="width: 260px; height: 230px; object-fit: cover; object-position: center;"></a>
+                                        <a type="submit"><img src="<?php if(isset($inf2['imgProdu'])){ echo "../../IMG/$inf2[imgProdu]"; } else { echo "../../IMG/índice.png"; } ?>" align="center" style="width: 260px; height: 230px; object-fit: cover; object-position: center;"></a>
                                     </div>
                                     <div class="caption" style=" height: 170px;">
                                         <h4><?php echo $inf2['nomeProdu'];?></h4>

@@ -82,5 +82,42 @@
                 header("Location: ../VIEW/consumidor/cadConsumidor.php");
             }
         break;
+        //Confirmar Conta
+        case 4:
+            $info = DBRead('consumidores', "where emailConsu='$_POST[login]'");
+            if(is_array($info)) {
+                foreach ($info as $inf){
+                    $cod = 1011;
+                    $_SESSION['msg'] = "Codigo Enviado para seu Email";
+                    $_SESSION['cod'] = $cod;
+                    $_SESSION['NcodConsu'] = $inf['cpconsumidor'];
+                    header("Location: ../altSenhaConsuS.php");
+                }
+            } else {
+                $_SESSION['msg'] = "Email não cadastrado";
+                header("Location: ../altSenhaConsu.php");
+            }
+        break;
+        case 5:
+            //Alterar Senha Comerciante
+            $info = DBRead('consumidores', "where cpconsumidor='$_POST[codConsu]'");
+            if(is_array($info)){
+                if($_POST['senha'] == $_POST['senhas'] && $_POST['cod'] == $_POST['codi']){
+                    foreach ($info as $inf){
+                        $consumidor = array(
+                            'senhaConsu'  =>  $_POST['senha']
+                        );
+                        $update = DBupdate('consumidores', $consumidor, "cpconsumidor = '$inf[cpconsumidor]'");
+                        if($update){
+                            $_SESSION['msg'] = "Alteração Efetuada";
+                            header("Location: ../login.php");
+                        }
+                    }
+                } else { $_SESSION['msg'] = "Senha e / ou Codigo incorreto"; header("Location: ../login.php"); }
+            } else {
+                $_SESSION['msg'] = "Erro, tente novamente mais tarde!";
+                header("Location: ../login.php");
+            }
+        break;
     }
 ?>

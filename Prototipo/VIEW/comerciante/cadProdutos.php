@@ -32,7 +32,7 @@
 </head>
 <body>
 <div style="width: 1100px;">
-    <form class="form-horizontal" action="../../CONT/produtos.php" method="post" enctype="multipart/form-data" onsubmit="return">
+    <form class="form-horizontal" action="../../CONT/produtos.php" method="post" onsubmit="return">
         <input type="hidden" name="rota" value="1">
         <fieldset>
             <?php if(isset($_SESSION['msg'])){ ?>
@@ -73,7 +73,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="img">Imagem:</label>
                 <div class="col-md-4">
-                    <input id="img" name="img" type="file" class="input-md x500" value="teste">
+                    <input id="img" name="img" type="file" class="input-md x500">
                     <span class="help-block">Este campo não é obrigatorio</span>
                 </div>
             </div>

@@ -2,8 +2,15 @@
 require '../../CONT/connection.php';
 require '../../CONT/database.php';
 $info = DBRead('produtos, comerciantes', "where produtos.cecomerciante = comerciantes.cpcomerciante and cpproduto = $_POST[cpproduto]");
+$info5 = DBRead('promocoes', "where promocoes.ceproduto = $_POST[cpproduto]");
 if(is_array($info)){
-    foreach ($info as $inf){ ?>
+    foreach ($info as $inf){
+        if(is_array($info5)){
+            foreach ($info5 as $inf5){
+                $preçoProduto = floatval(str_replace("," , "." , str_replace("." , "" , $inf['precoProdu'])));
+                $desconto = $preçoProduto - ($preçoProduto * ($inf5['descontoPromo']/100));
+            }
+        }?>
         <!DOCTYPE html>
         <html lang="pt-br">
         <head>
@@ -294,7 +301,11 @@ if(is_array($info)){
                         <div class="details col-md-6">
                             <h3 class="product-title"><?php echo $inf['nomeProdu']; ?></h3>
                             <p class="product-description"><?php echo $inf['descricaoProdu']; ?></p>
-                            <h4 class="price">Valor do Produto: <span><?php echo "R$".$inf['precoProdu']; ?></span></h4>
+                            <?php if(is_array($info5)){ ?>
+                                <h4 class="price">Valor do Produto: <span><?php echo "R$".$desconto; ?></span></h4>
+                            <?php } else {?>
+                                <h4 class="price">Valor do Produto: <span><?php echo "R$".$inf['precoProdu']; ?></span></h4>
+                            <?php }?>
                             <div class="action">
                                 <?php if(!isset($_POST['rota'])){ ?>
                                 <form action="../../CONT/produtos.php" method="post" class="form-register" onsubmit="return">
